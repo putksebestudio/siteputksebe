@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Ψ-студия «Путь к себе» | Психологическая помощь</title>
+    <!-- Подключаем шрифты для эстетики -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at 10% 30%, #faf3e8, #f2e2da);
+            font-family: 'Inter', sans-serif;
+            color: #3e2a2b;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* Основной контейнер */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        /* ========== СТИЛИ ЖИДКОГО СТЕКЛА (Liquid Glass) ========== */
+        .glass-btn, .social-btn, .cta-button {
+            position: relative;
+            background: rgba(239, 204, 205, 0.55);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 245, 240, 0.7);
+            border-radius: 60px;
+            padding: 0.9rem 2rem;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #6b3e3f;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            letter-spacing: 0.3px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        /* Эффект жидкого перелива (анимация глянца) */
+        .glass-btn::before, .social-btn::before, .cta-button::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,245,235,0.6) 0%, rgba(255,245,235,0) 80%);
+            transform: rotate(25deg);
+            transition: transform 0.5s ease-out;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .glass-btn:hover::before, .social-btn:hover::before, .cta-button:hover::before {
+            transform: rotate(25deg) translateX(20%);
+        }
+
+        .glass-btn:hover, .social-btn:hover, .cta-button:hover {
+            background: rgba(201, 126, 129, 0.35);
+            backdrop-filter: blur(16px);
+            border-color: rgba(201, 126, 129, 0.6);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12), 0 0 0 2px rgba(201, 126, 129, 0.2);
+            transform: translateY(-2px);
+            color: #4f2c2d;
+        }
+
+        .cta-button {
+            background: rgba(201, 126, 129, 0.5);
+            backdrop-filter: blur(14px);
+            font-size: 1.2rem;
+            padding: 1rem 2.4rem;
+            font-weight: 700;
+            border: 1px solid rgba(255, 220, 210, 0.9);
+            color: #2f1e1f;
+        }
+
+        /* стеклянные карточки */
+        .glass-card {
+            background: rgba(239, 204, 205, 0.35);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            border: 1px solid rgba(255, 240, 235, 0.7);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            padding: 1.8rem;
+            transition: all 0.25s ease;
+        }
+
+        .glass-card:hover {
+            background: rgba(239, 204, 205, 0.5);
+            border-color: #c97e81a0;
+            transform: translateY(-5px);
+        }
+
+        /* типографика */
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            letter-spacing: -0.3px;
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            color: #5a3637;
+            text-shadow: 1px 1px 0 rgba(255,245,235,0.6);
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin: 1.8rem 0 1rem 0;
+            border-left: 5px solid #c97e81;
+            padding-left: 1.2rem;
+            color: #613b3c;
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            margin: 1.2rem 0 0.8rem 0;
+            color: #734d4e;
+        }
+
+        .psi-symbol {
+            font-size: 2.4rem;
+            display: inline-block;
+            background: rgba(201,126,129,0.25);
+            border-radius: 100px;
+            padding: 0 12px;
+            margin-right: 8px;
+            backdrop-filter: blur(4px);
+        }
+
+        .subhead {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            color: #886264;
+            max-width: 90%;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 1rem;
+        }
+
+        .grid-2col {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .grid-item {
+            flex: 1 1 280px;
+        }
+
+        /* список направлений */
+        .directions-list {
+            list-style: none;
+            padding: 0;
+        }
+        .directions-list li {
+            margin-bottom: 0.9rem;
+            padding-left: 1.7rem;
+            position: relative;
+        }
+        .directions-list li::before {
+            content: "Ψ";
+            position: absolute;
+            left: 0;
+            color: #c97e81;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Кнопки соцсетей в футере */
+        .socials-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0 1rem;
+        }
+        .social-btn {
+            background: rgba(239, 204, 205, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 1.7rem;
+            min-width: 140px;
+            font-size: 0.95rem;
+        }
+
+        footer {
+            margin-top: 3.5rem;
+            text-align: center;
+            border-top: 1px solid rgba(201,126,129,0.4);
+            padding-top: 2rem;
+        }
+
+        .btn-center {
+            display: flex;
+            justify-content: center;
+            margin: 3rem 0 2rem;
+        }
+
+        .small-note {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 760px) {
+            .container {
+                padding: 1.2rem;
+            }
+            h1 {
+                font-size: 2.3rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            .glass-btn, .social-btn {
+                padding: 0.6rem 1.2rem;
+            }
+            .cta-button {
+                font-size: 1rem;
+                padding: 0.8rem 1.8rem;
+            }
+        }
+
+        /* анимация появления */
+        .fade-up {
+            animation: fadeUp 0.6s ease forwards;
+        }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            animation: fadeUp 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Шапка / Приветствие -->
+    <div class="hero">
+        <h1>
+            <span class="psi-symbol">Ψ</span> Добро пожаловать в Ψ-студию «Путь к себе»
+        </h1>
+        <div class="subhead">ваше безопасное пространство для самопознания, внутренней гармонии и личностного роста.</div>
+    </div>
+
+    <!-- О студии + символика -->
+    <section>
+        <div class="glass-card">
+            <h2>О студии</h2>
+            <p>Мы помогаем <strong>бережно разобраться в себе</strong>, найти внутренние опоры и справиться с жизненными кризисами. Знак <strong>«Ψ» (Пси)</strong> в нашем названии символизирует глубокую психологическую работу, направленную на исцеление души и разума. Каждый ваш шаг здесь — шаг к осознанной и целостной жизни.</p>
+        </div>
+    </section>
+
+    <!-- Что вы найдете в сообществе -->
+    <section>
+        <h2>Что вы найдете в нашем сообществе</h2>
+        <div class="grid-2col">
+            <div class="grid-item glass-card">
+                <h3>📚 Полезные материалы</h3>
+                <p>Статьи о психологии отношений, самооценке и выгорании. Разборы реальных ситуаций, советы от практикующих психологов.</p>
+            </div>
+            <div class="grid-item glass-card">
+                <h3>🧘 Практические техники</h3>
+                <p>Упражнения для самопомощи, медитации и арт-терапевтические практики, которые помогут гармонизировать состояние здесь и сейчас.</p>
+            </div>
+            <div class="grid-item glass-card">
+                <h3>📅 Анонсы мероприятий</h3>
+                <p>Информация о групповых тренингах, вебинарах и психологических интенсивах. Присоединяйтесь к живым встречам!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Направления работы -->
+    <section>
+        <h2>Направления работы</h2>
+        <div class="glass-card" style="padding: 1.8rem;">
+            <ul class="directions-list">
+                <li><strong>Индивидуальные психологические консультации</strong> для взрослых и детей.</li>
+                <li><strong>Проработка тревожности, страхов и внутренних блоков</strong>, переживания горя, преодоление школьной неуспеваемости, коррекция поведения и многое другое.</li>
+                <li><strong>Поиск истинных жизненных целей</strong> и раскрытие потенциала.</li>
+                <li><strong>Гармонизация отношений с собой и окружающим миром</strong> посредством современных и эффективных методов работы (КПТ, гештальт-подход, арт-терапия, телесно-ориентированная психология).</li>
+            </ul>
+            <p style="margin-top: 1rem; font-style: italic;">— Каждый метод подбирается индивидуально, с уважением к вашей уникальной истории.</p>
+        </div>
+    </section>
+
+    <!-- Главная кнопка "Записаться на консультацию" (ведет на vk.ru/angela040992) -->
+    <div class="btn-center">
+        <a href="https://vk.ru/angela040992" target="_blank" rel="noopener noreferrer" class="cta-button glass-btn">
+            ✨ Записаться на консультацию ✨
+        </a>
+    </div>
+
+    <!-- Дополнительный блок про глубину работы (стилистически) -->
+    <section style="margin: 2rem 0;">
+        <div class="glass-card" style="text-align: center;">
+            <p style="font-size: 1.1rem;">💬 «Путь к себе начинается с первого шага. Позвольте себе услышать свой внутренний голос в атмосфере доверия и безусловного принятия»</p>
+            <p style="margin-top: 0.8rem;">— Анжела, основатель Ψ-студии</p>
+        </div>
+    </section>
+
+    <!-- Здесь после пролистывания до конца будут соц-кнопки: VK, MAX, Telegram -->
+    <footer>
+        <div class="socials-row">
+            <!-- Кнопка ВК с ссылкой https://vk.ru/psi_studio_put_k_sebe -->
+            <a href="https://vk.ru/psi_studio_put_k_sebe" target="_blank" rel="noopener noreferrer" class="social-btn glass-btn">
+                <span>📱</span> Мы в VK!
+            </a>
+            <!-- Кнопка MAX (ссылка mail.ru по условию) -->
+            <a href=" https://putksebestudio.github.io/siteismissing/" target="_blank" rel="noopener noreferrer" class="social-btn glass-btn">
+                <span>⭐</span> Мы в MAX!
+            </a>
+            <!-- Кнопка Telegram (ссылка mail.ru, т.к. нет реальной) -->
+            <a href=" https://putksebestudio.github.io/siteismissing/" target="_blank" rel="noopener noreferrer" class="social-btn glass-btn">
+                <span>✈️</span> Мы в Telegram!
+            </a>
+        </div>
+        <div class="small-note">
+            Ψ-студия «Путь к себе» — лицензия на заботу о вашей психике © 2025
+        </div>
+    </footer>
+</div>
+
+<!-- Добавляем небольшой интерактивный эффект для ощущения жидкости при клике (необязательно) -->
+<script>
+    (function() {
+        // Добавим "волну" при клике на любую кнопку стекла — просто эффект ripple (liquid-сплеск)
+        const buttons = document.querySelectorAll('.glass-btn, .cta-button, .social-btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                // не перебиваем навигацию, только кастомный анимированный кружок
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.width = '0px';
+                ripple.style.height = '0px';
+                ripple.style.borderRadius = '50%';
+                ripple.style.backgroundColor = 'rgba(255, 245, 230, 0.6)';
+                ripple.style.transform = 'translate(-50%, -50%)';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.style.pointerEvents = 'none';
+                ripple.style.transition = 'all 0.5s ease-out';
+                ripple.style.zIndex = '5';
+                btn.style.position = 'relative';
+                btn.style.overflow = 'hidden';
+                btn.appendChild(ripple);
+                requestAnimationFrame(() => {
+                    ripple.style.width = '180px';
+                    ripple.style.height = '180px';
+                    ripple.style.opacity = '0';
+                });
+                setTimeout(() => {
+                    ripple.remove();
+                }, 500);
+            });
+        });
+    })();
+</script>
+</body>
+</html>
